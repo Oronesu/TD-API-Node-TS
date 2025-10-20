@@ -6,7 +6,7 @@ import { Router } from 'express'; // Importe Router depuis Express pour créer d
 
 
 // Importation des contrôleurs qui gèrent la logique métier pour les utilisateurs
-import { getUsers, addUser } from '../controllers/user.controller'; // Importe les fonctions de contrôle pour les utilisateurs
+import { getUsers, addUser,updateUser,deleteUser } from '../controllers/user.controller'; // Importe les fonctions de contrôle pour les utilisateurs
 //Explication:
 /* Ces fonctions contiennent la logique métier pour gérer les utilisateurs (récupération et ajout).*/
 
@@ -26,16 +26,35 @@ router.get('/', (req, res, next) => {
 //Explication: 
 //Définit la route GET pour récupérer les utilisateurs
 
+
+
+
 /**
 * Route POST /users
 * Description : Ajoute un nouvel utilisateur
 * Contrôleur associé : addUser (défini dans user.controller.ts)
 */
 
-
 router.post('/', addUser); 
 // Explication:
 // Définit la route POST pour ajouter un utilisateur
+
+
+
+/**
+ * Route PUT /users/:id
+ * Description : Met à jour un utilisateur existant par son ID
+ */
+router.put('/:id', updateUser);
+
+/**
+ * Route DELETE /users/:id
+ * Description : Supprime un utilisateur par son ID
+ */
+router.delete('/:id', deleteUser);
+
+
+
 
 // Exportation du routeur pour l'utiliser dans index.ts
 export default router; 
