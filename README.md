@@ -42,7 +42,7 @@ Cette API REST supporte uniquement les méthodes **POST** et **GET** pour gérer
 
 ##### Bash / Terminal Linux / macOS / WSL
 ```bash
-curl -X POST http://localhost:4000/api/users -H "Content-Type: application/json" -d '{"name": "Jean", "email": "jean@example.com"}'
+curl -X POST http://localhost:4000/api/users -H "Content-Type: application/json" -d "{\"name\":\"Jean\",\"email\":\"jean@example.com\"}"
 ```
 
 ### Récupérer un utilisateur
