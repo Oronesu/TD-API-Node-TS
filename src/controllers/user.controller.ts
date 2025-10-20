@@ -54,3 +54,55 @@ export const addUser = async (req: Request, res: Response) => {
 };
 
 
+/**
+ * Contrôleur PUT /users/:id
+ * Description : Met à jour un utilisateur existant
+ */
+export const updateUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { name, email } = req.body;
+
+    if (!name && !email) {
+      return res.status(400).json({ message: 'Au moins un champ (nom ou email) est requis pour la mise à jour' });
+    }
+
+    const db = await initDB();
+    const result = await db.run(
+      'UPDATE users SET name = COALESCE(?, name), email = COALESCE(?, email) WHERE id = ?',
+      [name, email, id]
+    );
+
+    if (result.changes === 0) {
+      return res.status(404).json({ message: 'Utilisateur non trouvé' });
+    }
+
+    res.json({ message: `Utilisateur ${id} mis à jour avec succès` });
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour :", error);
+    res.status(500).json({ message: "Erreur serveur lors de la mise à jour de l'utilisateur" });
+  }
+};
+
+/**
+ * Contrôleur DELETE /users/:id
+ * Description : Supprime un utilisateur existant
+ */
+export const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const db = await initDB();
+    const result = await db.run('DELETE FROM users WHERE id = ?', [id]);
+
+    if (result.changes === 0) {
+      return res.status(404).json({ message: 'Utilisateur non trouvé' });
+    }
+
+    res.json({ message: `Utilisateur ${id} supprimé avec succès` });
+  } catch (error) {
+    console.error("Erreur lors de la suppression :", error);
+    res.status(500).json({ message: "Erreur serveur lors de la suppression de l'utilisateur" });
+  }
+};
+
+
