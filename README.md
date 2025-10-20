@@ -21,8 +21,7 @@ cd TD-API-Node-TS
 
 2. Installer les dépendances
 ```bash
-npm install express dotenv
-npm install -D typescript ts-node @types/node @types/express nodemon
+npm install
 ```
 3. Lancer en développement
 
@@ -32,7 +31,7 @@ npm run dev
 
 ## Utilisation
 
-Cette API REST supporte uniquement les méthodes **POST** et **GET** pour gérer le stockage d'utilisateurs dans la base de données.
+Cette API REST supporte les méthodes **POST**, **GET**, **PUT** et **DELETE** pour gérer le stockage d'utilisateurs dans la base de données.
 
 ---
 
@@ -45,7 +44,7 @@ Cette API REST supporte uniquement les méthodes **POST** et **GET** pour gérer
 curl -X POST http://localhost:4000/users -H "Content-Type: application/json" -d "{\"name\":\"Jean\",\"email\":\"jean@example.com\"}"
 ```
 
-### Récupérer un utilisateur
+### Récupérer les utilisateurs (GET)
 
 #### En local (après avoir lancé le serveur avec `npm run dev`)
 
@@ -54,6 +53,32 @@ curl -X POST http://localhost:4000/users -H "Content-Type: application/json" -d 
 ```bash
 curl -X GET http://localhost:4000/users
 ```
+
+###  Mettre à jour un utilisateur (PUT)
+
+Cette route permet de modifier les informations d’un utilisateur existant via son ID.
+
+#### En local (après avoir lancé le serveur avec `npm run dev`)
+
+##### Bash / Terminal Linux / macOS / WSL
+```bash
+curl -X PUT http://localhost:4000/users/1 -H "Content-Type: application/json" -d "{\"name\":\"Jean Modifié\",\"email\":\"jean.modifie@example.com\"}"
+```
+Remplacez 1 par l’ID de l’utilisateur à modifier. Possibilité de mettre aussi à jour partiellement :
+
+```bash
+curl -X PUT http://localhost:4000/users/1 -H "Content-Type: application/json" -d "{\"email\":\"nouvel.email@example.com\"}"
+```
+### Supprimer un utilisateur (DELETE)
+
+Cette route permet de supprimer un utilisateur existant via son ID.
+
+#### En local (après avoir lancé le serveur avec npm run dev)
+##### Bash / Terminal Linux / macOS / WSL
+```bash
+curl -X DELETE http://localhost:4000/users/1
+```
+Remplacez 1 par l’ID de l’utilisateur à supprimer.
 
 
 ## 🧪 Tester l'API avec Postman
@@ -100,3 +125,38 @@ http://localhost:4000/users
 ```
 
 4. Cliquez sur Send pour récupérer les données
+
+
+
+### ✏️ Requête PUT
+1. Créez une nouvelle requête dans Postman.
+
+2. Sélectionnez la méthode PUT.
+
+3. Saisissez l’URL avec l’ID de l’utilisateur :
+
+
+```
+http://localhost:4000/users/1
+```
+Onglet Body → raw → JSON :
+
+```json
+{
+  "name": "Jean Modifié",
+  "email": "jean.modifie@example.com"
+}
+```
+4. Cliquez sur Send pour mettre à jour.
+
+### ❌ Requête DELETE
+1. Créez une nouvelle requête dans Postman.
+
+2. Sélectionnez la méthode DELETE.
+
+3. Saisissez l’URL avec l’ID de l’utilisateur :
+
+```
+http://localhost:4000/users/1
+```
+4. Cliquez sur Send pour supprimer l’utilisateur.
