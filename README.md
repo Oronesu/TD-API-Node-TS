@@ -42,7 +42,7 @@ Cette API REST supporte uniquement les méthodes **POST** et **GET** pour gérer
 
 ##### Bash / Terminal Linux / macOS / WSL
 ```bash
-curl -X POST http://localhost:4000/api/users -H "Content-Type: application/json" -d "{\"name\":\"Jean\",\"email\":\"jean@example.com\"}"
+curl -X POST http://localhost:4000/users -H "Content-Type: application/json" -d "{\"name\":\"Jean\",\"email\":\"jean@example.com\"}"
 ```
 
 ### Récupérer un utilisateur
@@ -62,7 +62,7 @@ Utilisation possible avec [Postman](https://www.postman.com/) pour interagir fac
 
 ### 🔧 Étapes pour une requête POST
 
-1. Lance le serveur avec :
+1. Lancez le serveur avec :
    ```bash
    npm run dev
    ```
@@ -91,7 +91,7 @@ http://localhost:4000/users
 
 1. Créez une nouvelle requête dans Postman.
 
-2. Sélectionne la méthode GET.
+2. Sélectionnez la méthode GET.
 
 3. Saisisez l'URL contenant les utilisateurs :
 
