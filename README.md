@@ -1,6 +1,6 @@
 # 📦 Mon API Node.js/TypeScript
 
-Une API REST robuste et maintenable construite avec Node.js et TypeScript. Elle expose plusieurs endpoints pour manipuler des ressources via HTTP, avec une architecture claire et extensible.
+Une API REST robuste et maintenable construite avec Node.js et TypeScript avec un intégration de SQLite pour la base de données. Elle expose plusieurs endpoints pour manipuler des ressources via HTTP, avec une architecture claire et extensible.
 
 ## 🛠️ Installation
 
